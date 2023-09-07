@@ -5,6 +5,19 @@ data "http" "demoflow" {
 
 resource "davinci_flow" "demoflow" {
   environment_id = var.demo_environment_id
+  dynamic "flow_url" {
+    for_each = [var.flow_url]
+    content {
+      flow_json = data.http.demoflow.response_body
+    }
+  }
+
+  dynamic "flow_file" {
+    for_each = [var.flow_file]
+    content {
+      flow_json = file(var.flow_file)
+    }
+  }
   # flow_json      = file("flows/demo-flow.json")
   flow_json = data.http.demoflow.response_body
   deploy    = true
