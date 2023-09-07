@@ -38,11 +38,6 @@ data "pingone_user" "dv_admin_user" {
   username       = var.pingone_username
 }
 
-data "pingone_user" "user_terrysigle" {
-  environment_id = var.pingone_environment_id
-  username       = "terrysigle@pingidentity.com"
-}
-
 // Assign the "Identity Data Admin" role to the DV admin user
 resource "pingone_role_assignment_user" "admin_sso_davninci_admin" {
   environment_id       = var.pingone_environment_id
