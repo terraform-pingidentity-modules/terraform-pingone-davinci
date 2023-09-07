@@ -10,26 +10,8 @@ locals {
 
 resource "davinci_flow" "demoflow" {
   environment_id = var.demo_environment_id
-
-  flow_json = local.flow_json
-  # dynamic "flow_url" {
-  #   for_each = [var.flow_url]
-  #   content {
-  #     flow_json = data.http.demoflow.response_body
-  #   }
-  # }
-
-  # dynamic "flow_str" {
-  #   for_each = [var.flow_file]
-  #   content {
-  #     flow_json = file(flow_str.value)
-  #   }
-  # }
-  # # flow_json      = file("flows/demo-flow.json")
-  # flow_json = data.http.demoflow.response_body
-  deploy = true
-
-  # Look into parsing flow, looking for connectors, constructs, subflows
+  flow_json      = local.flow_json
+  deploy         = true
 
   dynamic "connection_link" {
     for_each = var.connections
