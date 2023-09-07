@@ -75,6 +75,28 @@ resource "davinci_connection" "pingone_verify" {
   ]
 }
 
+resource "davinci_connection" "pingone_credentials" {
+  environment_id = var.demo_environment_id
+  name           = "PingOne Credentials"
+  connector_id   = "pingOneCredentialsConnector"
+  property {
+    name  = "envId"
+    value = var.pingone_environment_id
+  }
+  property {
+    name  = "clientId"
+    value = var.pingone_client_id
+  }
+  property {
+    name  = "clientSecret"
+    value = var.pingone_client_secret
+  }
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
 output "dv_conns" {
   value = {
     names = concat(data.davinci_connections.read_all.connections.*.name,
@@ -84,7 +106,8 @@ output "dv_conns" {
         resource.davinci_connection.challenge.name,
         resource.davinci_connection.flow_conductor.name,
         resource.davinci_connection.teleport.name,
-        resource.davinci_connection.pingone_verify.name
+        resource.davinci_connection.pingone_verify.name,
+        resource.davinci_connection.pingone_credentials.name
     ])
     connections = concat(tolist(data.davinci_connections.read_all.connections),
       [
@@ -93,7 +116,8 @@ output "dv_conns" {
         resource.davinci_connection.challenge,
         resource.davinci_connection.flow_conductor,
         resource.davinci_connection.teleport,
-        resource.davinci_connection.pingone_verify
+        resource.davinci_connection.pingone_verify,
+        resource.davinci_connection.pingone_credentials
     ])
   }
 }
