@@ -1,6 +1,7 @@
 
 data "http" "demoflow" {
-  url = var.flow_url
+  count = var.flow_url ? 1 : 0
+  url   = var.flow_url
 }
 
 locals {
