@@ -18,8 +18,8 @@ resource "davinci_flow" "demoflow" {
   dynamic "subflow_link" {
     for_each = var.subflows
     content {
-      name = subflow_link.name
-      id   = subflow_link.id
+      name = subflow_link.value.name
+      id   = subflow_link.value.id
     }
   }
 
