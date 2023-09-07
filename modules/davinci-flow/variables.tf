@@ -6,7 +6,13 @@ variable "demo_environment_id" {
 
 variable "flow_url" {
   type        = string
+  default     = null
   description = "URL where the flow json can be retrieved"
+}
+variable "flow_file" {
+  type        = string
+  default     = null
+  description = "Local file where the flow json can be retrieved"
 }
 
 variable "connections" {
