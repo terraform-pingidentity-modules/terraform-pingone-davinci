@@ -5,7 +5,7 @@ data "http" "demoflow" {
 }
 
 locals {
-  flow_json = var.flow_file != null ? file(var.flow_file) : data.http.demoflow.response_body
+  flow_json = var.flow_file != null ? file(var.flow_file) : data.http.demoflow[0].response_body
 }
 
 resource "davinci_flow" "demoflow" {
