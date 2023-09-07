@@ -28,9 +28,9 @@ resource "davinci_flow" "demoflow" {
   }
 }
 
-output "flows" {
-  value = [{
+output "flow" {
+  value = {
     id   = resource.davinci_flow.demoflow.id
     name = resource.davinci_flow.demoflow.name
-  }]
+  }
 }
