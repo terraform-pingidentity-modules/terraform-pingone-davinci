@@ -10,7 +10,7 @@ locals {
 resource "davinci_flow" "demoflow" {
   environment_id = var.demo_environment_id
 
-  flow_json = locals.flow_json
+  flow_json = local.flow_json
   # dynamic "flow_url" {
   #   for_each = [var.flow_url]
   #   content {
