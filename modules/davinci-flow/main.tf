@@ -1,6 +1,6 @@
 
 data "http" "demoflow" {
-  count = var.flow_url ? 1 : 0
+  count = var.flow_url != null ? 1 : 0
   url   = var.flow_url
 }
 
