@@ -3,24 +3,30 @@ data "http" "demoflow" {
   url = var.flow_url
 }
 
+locals {
+  flow_json = var.flow_file != null ? file(var.flow_file) : data.http.demoflow.response_body
+}
+
 resource "davinci_flow" "demoflow" {
   environment_id = var.demo_environment_id
-  dynamic "flow_url" {
-    for_each = [var.flow_url]
-    content {
-      flow_json = data.http.demoflow.response_body
-    }
-  }
 
-  dynamic "flow_file" {
-    for_each = [var.flow_file]
-    content {
-      flow_json = file(var.flow_file)
-    }
-  }
-  # flow_json      = file("flows/demo-flow.json")
-  flow_json = data.http.demoflow.response_body
-  deploy    = true
+  flow_json = locals.flow_json
+  # dynamic "flow_url" {
+  #   for_each = [var.flow_url]
+  #   content {
+  #     flow_json = data.http.demoflow.response_body
+  #   }
+  # }
+
+  # dynamic "flow_str" {
+  #   for_each = [var.flow_file]
+  #   content {
+  #     flow_json = file(flow_str.value)
+  #   }
+  # }
+  # # flow_json      = file("flows/demo-flow.json")
+  # flow_json = data.http.demoflow.response_body
+  deploy = true
 
   # Look into parsing flow, looking for connectors, constructs, subflows
 
