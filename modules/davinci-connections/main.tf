@@ -53,15 +53,15 @@ resource "davinci_connection" "teleport" {
 #  ]
 #}
 
-resource "davinci_connection" "device_policy" {
-  environment_id = var.demo_environment_id
-  name           = "Device Policy"
-  connector_id   = "devicePolicyConnector"
-
-  depends_on = [
-    data.davinci_connections.read_all
-  ]
-}
+#resource "davinci_connection" "device_policy" {
+#  environment_id = var.demo_environment_id
+#  name           = "Device Policy"
+#  connector_id   = "devicePolicyConnector"
+#
+#  depends_on = [
+#    data.davinci_connections.read_all
+#  ]
+#}
 
 resource "davinci_connection" "flow_analytics" {
   environment_id = var.demo_environment_id
@@ -128,7 +128,7 @@ output "dv_conns" {
         resource.davinci_connection.teleport.name,
         resource.davinci_connection.pingone_verify.name,
         resource.davinci_connection.pingone_credentials.name,
-        resource.davinci_connection.device_policy.name,
+        #resource.davinci_connection.device_policy.name,
         resource.davinci_connection.flow_analytics.name
     ])
     connections = concat(tolist(data.davinci_connections.read_all.connections),
@@ -140,7 +140,7 @@ output "dv_conns" {
         resource.davinci_connection.teleport,
         resource.davinci_connection.pingone_verify,
         resource.davinci_connection.pingone_credentials,
-        resource.davinci_connection.device_policy,
+        #resource.davinci_connection.device_policy,
         resource.davinci_connection.flow_analytics
     ])
   }
