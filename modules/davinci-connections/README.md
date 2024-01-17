@@ -22,7 +22,7 @@ No modules.
 | [davinci_connection.amazon_simple_email](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |
 | [davinci_connection.challenge](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |
 | [davinci_connection.flow](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |
-| [davinci_connection.flow_conductor](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |
+| [davinci_connection.flow_analytics](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |
 | [davinci_connection.pingone_credentials](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |
 | [davinci_connection.pingone_verify](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |
 | [davinci_connection.teleport](https://registry.terraform.io/providers/pingidentity/davinci/latest/docs/resources/connection) | resource |

@@ -4,12 +4,6 @@ resource "pingone_environment" "demo_environment" {
   type        = "SANDBOX"
   license_id  = var.license_id
 
-
-  default_population {
-    name        = "Demo Population"
-    description = "Demo population for users"
-  }
-
   service {
     type = "SSO"
   }
@@ -20,11 +14,19 @@ resource "pingone_environment" "demo_environment" {
 
   service {
     type = "DaVinci"
+    tags = ["DAVINCI_MINIMAL"]
     bookmark {
       name = "Ping Library Flow Runner"
-      url  = "https://dev.pinglibrary.com/flow-runner"
+      url  = "https://library.pingidentity.com/flow-runner"
     }
   }
+}
+
+resource "pingone_population_default" "demo_default_population" {
+  environment_id = resource.pingone_environment.demo_environment.id
+
+  name        = "Demo Population"
+  description = "Demo population for users"
 }
 
 resource "pingone_application" "demo_worker_app" {
