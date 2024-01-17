@@ -43,15 +43,15 @@ resource "davinci_connection" "teleport" {
   ]
 }
 
-resource "davinci_connection" "flow_conductor" {
-  environment_id = var.demo_environment_id
-  name           = "Flow Conductor"
-  connector_id   = "flowConnector"
-
-  depends_on = [
-    data.davinci_connections.read_all
-  ]
-}
+#resource "davinci_connection" "flow_conductor" {
+#  environment_id = var.demo_environment_id
+#  name           = "Flow Conductor"
+#  connector_id   = "flowConnector"
+#
+#  depends_on = [
+#    data.davinci_connections.read_all
+#  ]
+#}
 
 resource "davinci_connection" "device_policy" {
   environment_id = var.demo_environment_id
@@ -124,7 +124,7 @@ output "dv_conns" {
         resource.davinci_connection.amazon_simple_email.name,
         resource.davinci_connection.flow.name,
         resource.davinci_connection.challenge.name,
-        resource.davinci_connection.flow_conductor.name,
+        #resource.davinci_connection.flow_conductor.name,
         resource.davinci_connection.teleport.name,
         resource.davinci_connection.pingone_verify.name,
         resource.davinci_connection.pingone_credentials.name,
@@ -136,7 +136,7 @@ output "dv_conns" {
         resource.davinci_connection.amazon_simple_email,
         resource.davinci_connection.flow,
         resource.davinci_connection.challenge,
-        resource.davinci_connection.flow_conductor,
+        #resource.davinci_connection.flow_conductor,
         resource.davinci_connection.teleport,
         resource.davinci_connection.pingone_verify,
         resource.davinci_connection.pingone_credentials,
