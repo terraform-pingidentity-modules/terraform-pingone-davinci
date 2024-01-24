@@ -43,26 +43,6 @@ resource "davinci_connection" "teleport" {
   ]
 }
 
-#resource "davinci_connection" "flow_conductor" {
-#  environment_id = var.demo_environment_id
-#  name           = "Flow Conductor"
-#  connector_id   = "flowConnector"
-#
-#  depends_on = [
-#    data.davinci_connections.read_all
-#  ]
-#}
-
-#resource "davinci_connection" "device_policy" {
-#  environment_id = var.demo_environment_id
-#  name           = "Device Policy"
-#  connector_id   = "devicePolicyConnector"
-#
-#  depends_on = [
-#    data.davinci_connections.read_all
-#  ]
-#}
-
 resource "davinci_connection" "flow_analytics" {
   environment_id = var.demo_environment_id
   name           = "Flow Analytics"
@@ -117,31 +97,81 @@ resource "davinci_connection" "pingone_credentials" {
   ]
 }
 
+resource "davinci_connection" "pingone" {
+  environment_id = var.demo_environment_id
+  name           = "PingOne"
+  connector_id   = "pingOneSsoConnector"
+  property {
+    name  = "envId"
+    value = var.pingone_environment_id
+  }
+  property {
+    name  = "clientId"
+    value = var.pingone_client_id
+  }
+  property {
+    name  = "clientSecret"
+    value = var.pingone_client_secret
+  }
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
+
+resource "davinci_connection" "http" {
+  name           = "Http"
+  connector_id   = "httpConnector"
+  environment_id = var.demo_environment_id
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
+resource "davinci_connection" "annotation" {
+  name           = "Annotation"
+  connector_id   = "annotationConnector"
+  environment_id = var.demo_environment_id
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
+resource "davinci_connection" "functions" {
+  name           = "Functions"
+  connector_id   = "functionConnector"
+  environment_id = var.demo_environment_id
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
+resource "davinci_connection" "error_message" {
+  name           = "Error Message"
+  connector_id   = "errorConnector"
+  environment_id = var.demo_environment_id
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+resource "davinci_connection" "variables" {
+  name           = "Variables"
+  connector_id   = "variablesConnector"
+  environment_id = var.demo_environment_id
+
+  depends_on = [
+    data.davinci_connections.read_all
+  ]
+}
+
 output "dv_conns" {
   value = {
-    names = concat(data.davinci_connections.read_all.connections.*.name,
-      [
-        resource.davinci_connection.amazon_simple_email.name,
-        resource.davinci_connection.flow.name,
-        resource.davinci_connection.challenge.name,
-        #resource.davinci_connection.flow_conductor.name,
-        resource.davinci_connection.teleport.name,
-        resource.davinci_connection.pingone_verify.name,
-        resource.davinci_connection.pingone_credentials.name,
-        #resource.davinci_connection.device_policy.name,
-        resource.davinci_connection.flow_analytics.name
-    ])
-    connections = concat(tolist(data.davinci_connections.read_all.connections),
-      [
-        resource.davinci_connection.amazon_simple_email,
-        resource.davinci_connection.flow,
-        resource.davinci_connection.challenge,
-        #resource.davinci_connection.flow_conductor,
-        resource.davinci_connection.teleport,
-        resource.davinci_connection.pingone_verify,
-        resource.davinci_connection.pingone_credentials,
-        #resource.davinci_connection.device_policy,
-        resource.davinci_connection.flow_analytics
-    ])
+    names       = ["Amazon Simple Email", "Flow", "Challenge", "Teleport", "Flow Analytics", "PingOne Verify", "PingOne Credentials", "PingOne", "Http", "Annotation", "Functions", "Error Message", "Variables"]
+    connections = [resource.davinci_connection.amazon_simple_email, resource.davinci_connection.flow, resource.davinci_connection.challenge, resource.davinci_connection.teleport, resource.davinci_connection.flow_analytics, resource.davinci_connection.pingone_verify, resource.davinci_connection.pingone_credentials, resource.davinci_connection.pingone, resource.davinci_connection.http, resource.davinci_connection.annotation, resource.davinci_connection.functions, resource.davinci_connection.error_message, resource.davinci_connection.variables]
   }
 }

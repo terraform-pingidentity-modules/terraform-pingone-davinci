@@ -14,7 +14,7 @@ resource "pingone_environment" "demo_environment" {
 
   service {
     type = "DaVinci"
-    #tags = ["DAVINCI_MINIMAL"]
+    tags = ["DAVINCI_MINIMAL"]
     bookmark {
       name = "Ping Library Flow Runner"
       url  = "https://library.pingidentity.com/flow-runner"
