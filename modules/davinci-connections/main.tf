@@ -100,7 +100,7 @@ resource "davinci_connection" "pingone_credentials" {
 resource "davinci_connection" "pingone" {
   environment_id = var.demo_environment_id
   name           = "PingOne"
-  connector_id   = "pingOneConnector"
+  connector_id   = "pingOneSSOConnector"
   property {
     name  = "envId"
     value = var.pingone_environment_id
