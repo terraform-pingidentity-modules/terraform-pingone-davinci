@@ -12,19 +12,6 @@ resource "davinci_application" "app" {
     }
   }
 
-  dynamic "policy" {
-    for_each = var.flows
-    content {
-      name   = policy.value.name
-      status = "enabled"
-      policy_flow {
-        flow_id    = policy.value.id
-        version_id = -1
-        weight     = 100
-      }
-    }
-  }
-
   saml {
     values {
       enabled                = false
@@ -33,7 +20,23 @@ resource "davinci_application" "app" {
   }
 }
 
+#resource "davinci_application_flow_policy" "app_policy" {
+#  environment_id = var.demo_environment_id
+#  application_id = resource.davinici_application.app
+#
+#  dynamic "policy" {
+#    content {
+#      name           = policy.value.name
+#      status         = "enabled"
+#      policy_flow {
+#        flow_id    = policy.value.id
+#        version_id = -1
+#        weight     = 100
+#      }
+#    }
+#  }
+#}
+
 output "pinglibrary_prod_app_key" {
   value = resource.davinci_application.app.api_keys.prod
 }
-
