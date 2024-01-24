@@ -14,7 +14,7 @@ resource "davinci_connection" "amazon_simple_email" {
 }
 
 resource "davinci_connection" "flow" {
-  name           = "Flow"
+  name           = "Flow Connector"
   connector_id   = "flowConnector"
   environment_id = var.demo_environment_id
 
