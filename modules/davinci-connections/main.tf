@@ -180,7 +180,7 @@ resource "davinci_connection" "notifications" {
 
 output "dv_conns" {
   value = {
-    names       = ["Amazon Simple Email", "Flow", "Challenge", "Teleport", "Flow Analytics", "PingOne Verify", "PingOne Credentials", "PingOne", "Http", "Annotation", "Functions", "Error Message", "Variables", "Notifications"]
+    names       = ["Amazon Simple Email", "Flow Connector", "Challenge", "Teleport", "Flow Analytics", "PingOne Verify", "PingOne Credentials", "PingOne", "Http", "Annotation", "Functions", "Error Message", "Variables", "Notifications"]
     connections = [resource.davinci_connection.amazon_simple_email, resource.davinci_connection.flow, resource.davinci_connection.challenge, resource.davinci_connection.teleport, resource.davinci_connection.flow_analytics, resource.davinci_connection.pingone_verify, resource.davinci_connection.pingone_credentials, resource.davinci_connection.pingone, resource.davinci_connection.http, resource.davinci_connection.annotation, resource.davinci_connection.functions, resource.davinci_connection.error_message, resource.davinci_connection.variables, resource.davinci_connection.notifications]
 
   }
