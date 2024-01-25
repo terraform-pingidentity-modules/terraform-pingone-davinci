@@ -22,7 +22,7 @@ resource "pingone_environment" "demo_environment" {
   }
 }
 
-resource "pingone_population_default" "demo_default_population" {
+resource "pingone_population" "demo_default_population" {
   environment_id = resource.pingone_environment.demo_environment.id
 
   name        = "Demo Population"
