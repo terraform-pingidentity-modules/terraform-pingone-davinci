@@ -33,9 +33,9 @@ resource "davinci_connection" "challenge" {
   ]
 }
 
-resource "davinci_connection" "teleport" {
+resource "davinci_connection" "node" {
   environment_id = var.demo_environment_id
-  name           = "Teleport"
+  name           = "Node"
   connector_id   = "nodeConnector"
 
   depends_on = [
@@ -180,8 +180,8 @@ resource "davinci_connection" "notifications" {
 
 output "dv_conns" {
   value = {
-    names       = ["Amazon Simple Email", "Flow Connector", "Challenge", "Teleport", "Flow Analytics", "PingOne Verify", "PingOne Credentials", "PingOne", "Http", "Annotation", "Functions", "Error Message", "Variables", "PingOne Notifications"]
-    connections = [resource.davinci_connection.amazon_simple_email, resource.davinci_connection.flow, resource.davinci_connection.challenge, resource.davinci_connection.teleport, resource.davinci_connection.flow_analytics, resource.davinci_connection.pingone_verify, resource.davinci_connection.pingone_credentials, resource.davinci_connection.pingone, resource.davinci_connection.http, resource.davinci_connection.annotation, resource.davinci_connection.functions, resource.davinci_connection.error_message, resource.davinci_connection.variables, resource.davinci_connection.notifications]
+    names       = ["Amazon Simple Email", "Flow Connector", "Challenge", "Node", "Flow Analytics", "PingOne Verify", "PingOne Credentials", "PingOne", "Http", "Annotation", "Functions", "Error Message", "Variables", "PingOne Notifications"]
+    connections = [resource.davinci_connection.amazon_simple_email, resource.davinci_connection.flow, resource.davinci_connection.challenge, resource.davinci_connection.node, resource.davinci_connection.flow_analytics, resource.davinci_connection.pingone_verify, resource.davinci_connection.pingone_credentials, resource.davinci_connection.pingone, resource.davinci_connection.http, resource.davinci_connection.annotation, resource.davinci_connection.functions, resource.davinci_connection.error_message, resource.davinci_connection.variables, resource.davinci_connection.notifications]
 
   }
 }
